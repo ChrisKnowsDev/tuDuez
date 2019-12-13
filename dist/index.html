@@ -5,12 +5,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.min.css">
-  <title>Document</title>
+  <title>tuDuez</title>
 </head>
 
 <body>
+  <div class="container">
+    <h1 class="title text-center">tu<span class="text-primary">Duez</span></h1>
+    <!-- Add task form -->
+    <form id="add-task">
+      <input type="text" placeholder="Add" id="task-input">
+      <div class="submit-wrap">
+        <input type="submit" value="Add" id="task-submit" class="btn-primary">
+      </div>
+    </form>
 
+    <!-- Task list -->
+    <div class="list-section">
+      <input type="text" placeholder="Filter" id="filter">
+      <ul class="list"></ul>
+      <div class="clear-wrap">
+        <input type="submit" value="Clear" class="btn-primary" id="clear-btn">
+      </div>
+    </div>
+  </div>
 
   <script src="js/app.js"></script>
 </body>
