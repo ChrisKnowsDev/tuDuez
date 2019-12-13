@@ -11,6 +11,10 @@ loadAllEventListeners();
 function loadAllEventListeners() {
   // Add task
   form.addEventListener('submit', addTask);
+  // Delete task
+  taskList.addEventListener('click', deleteTask);
+  // Clear tasks
+  clearBtn.addEventListener('click', clearTasks);
 }
 
 // Function add task
@@ -27,6 +31,8 @@ function addTask(e) {
   li.appendChild(document.createTextNode(taskInput.value));
   // Create link
   const link = document.createElement('a');
+  // Add class
+  link.className = 'delete-item';
   // Link html
   link.innerHTML = '<i class="fas fa-trash"></i>';
   // Append link to li
@@ -38,4 +44,23 @@ function addTask(e) {
   taskInput.value = '';
 
   e.preventDefault();
+}
+
+// Function delete task
+function deleteTask(e) {
+  if (e.target.parentElement.classList.contains('delete-item')) {
+    if (confirm('Are you sure?')) {
+      e.target.parentElement.parentElement.remove();
+    }
+  }
+}
+
+// Function clear tasks
+function clearTasks() {
+  if (confirm('Are you sure?')) {
+    while (taskList.firstChild) {
+      taskList.firstChild.remove();
+    }
+  }
+
 }
