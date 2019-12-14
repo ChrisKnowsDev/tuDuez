@@ -72,7 +72,7 @@ function filterTasks(e) {
   document.querySelectorAll('.list-item').forEach((task) => {
     const item = task.firstChild.textContent;
     if (item.toLocaleLowerCase().indexOf(text) != -1) {
-      task.style.display = 'block';
+      task.style.display = 'flex';
     } else {
       task.style.display = 'none';
     }
