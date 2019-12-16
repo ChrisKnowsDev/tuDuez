@@ -9,6 +9,8 @@ const clearBtn = document.getElementById('clear-btn');
 loadAllEventListeners();
 
 function loadAllEventListeners() {
+  // DOM load event
+  document.addEventListener('DOMContentLoaded', getTasks)
   // Add task
   form.addEventListener('submit', addTask);
   // Delete task
@@ -18,6 +20,12 @@ function loadAllEventListeners() {
   // Filter tasks
   filter.addEventListener('keyup', filterTasks);
 }
+
+// Get tasks from ls
+function getTasks() {
+
+}
+
 
 // Function add task
 function addTask(e) {
@@ -42,10 +50,27 @@ function addTask(e) {
   // Append li to ul 
   taskList.appendChild(li);
 
+  // Store task in ls
+  storeTaskInLocalStorage(taskInput.value);
+
   // Clear task input after submit
   taskInput.value = '';
 
   e.preventDefault();
+}
+
+// Function to store task in ls
+function storeTaskInLocalStorage(task) {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.push(task);
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 // Function delete task
