@@ -23,7 +23,31 @@ function loadAllEventListeners() {
 
 // Get tasks from ls
 function getTasks() {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
 
+  tasks.forEach((task) => {
+    // Create li
+    const li = document.createElement('li');
+    // Add class
+    li.className = 'list-item';
+    // Create textnode and append to li
+    li.appendChild(document.createTextNode(task));
+    // Create link
+    const link = document.createElement('a');
+    // Add class
+    link.className = 'delete-item';
+    // Link html
+    link.innerHTML = '<i class="fas fa-trash"></i>';
+    // Append link to li
+    li.appendChild(link);
+    // Append li to ul 
+    taskList.appendChild(li);
+  });
 }
 
 
