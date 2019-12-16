@@ -104,6 +104,27 @@ function deleteTask(e) {
       e.target.parentElement.parentElement.remove();
     }
   }
+
+  // Delete from ls
+  deleteTasksFromLocalStorage(e.target.parentElement.parentElement);
+}
+
+// Function to delete item from local storage when deleted from ui
+function deleteTasksFromLocalStorage(taskItem) {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach((task, index) => {
+    if (taskItem.textContent === task) {
+      tasks.splice(index, 1);
+    }
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 // Function clear tasks
