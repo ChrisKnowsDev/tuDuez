@@ -113,7 +113,17 @@ function clearTasks() {
       taskList.firstChild.remove();
     }
   }
+
+  // Clear task from ls
+  clearTasksFromLocalStorage();
 }
+
+// Functio to clear tasks from ls
+function clearTasksFromLocalStorage() {
+  localStorage.clear();
+}
+
+
 
 // Function filter tasks
 function filterTasks(e) {
