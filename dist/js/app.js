@@ -10,7 +10,7 @@ loadAllEventListeners();
 
 function loadAllEventListeners() {
   // DOM load event
-  document.addEventListener('DOMContentLoaded', getTasks)
+  document.addEventListener('DOMContentLoaded', getTasks);
   // Add task
   form.addEventListener('submit', addTask);
   // Delete task
@@ -32,7 +32,7 @@ function getTasks() {
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
 
-  tasks.forEach((task) => {
+  tasks.forEach(task => {
     // Create li
     const li = document.createElement('li');
     // Add class
@@ -51,20 +51,19 @@ function getTasks() {
     editLink.className = 'edit-item';
     // Edit link html
     editLink.innerHTML = '<i class="fas fa-edit"></i>';
-    // Create span to append i elements 
+    // Create span to append i elements
     const span = document.createElement('span');
     // Add class
-    span.className = 'icon-span'
+    span.className = 'icon-span';
     // Append i to span element
     span.appendChild(editLink);
     span.appendChild(link);
 
     li.appendChild(span);
-    // Append li to ul 
+    // Append li to ul
     taskList.appendChild(li);
   });
 }
-
 
 // Function add task
 function addTask(e) {
@@ -90,16 +89,16 @@ function addTask(e) {
   editLink.className = 'edit-item';
   // Edit link html
   editLink.innerHTML = '<i class="fas fa-edit"></i>';
-  // Create span to append i elements 
+  // Create span to append i elements
   const span = document.createElement('span');
   // Add class
-  span.className = 'icon-span'
+  span.className = 'icon-span';
   // Append i to span element
   span.appendChild(editLink);
   span.appendChild(link);
 
   li.appendChild(span);
-  // Append li to ul 
+  // Append li to ul
   taskList.appendChild(li);
 
   // Store task in ls
@@ -135,13 +134,14 @@ function deleteTask(e) {
   }
 
   // Delete from ls
-  deleteTasksFromLocalStorage(e.target.parentElement.parentElement.parentElement);
+  deleteTasksFromLocalStorage(
+    e.target.parentElement.parentElement.parentElement
+  );
 }
 
 // Edit task
 function editTask(e) {
   if (e.target.parentElement.classList.contains('edit-item')) {
-
   }
 }
 
@@ -180,12 +180,10 @@ function clearTasksFromLocalStorage() {
   localStorage.clear();
 }
 
-
-
 // Function filter tasks
 function filterTasks(e) {
   const text = e.target.value.toLowerCase();
-  document.querySelectorAll('.list-item').forEach((task) => {
+  document.querySelectorAll('.list-item').forEach(task => {
     const item = task.firstChild.textContent;
     if (item.toLocaleLowerCase().indexOf(text) != -1) {
       task.style.display = 'flex';
