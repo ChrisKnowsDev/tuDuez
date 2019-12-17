@@ -69,6 +69,7 @@ function getTasks() {
 function addTask(e) {
   if (taskInput.value === '') {
     alert('You must enter a task first');
+    return;
   }
 
   // Create li
