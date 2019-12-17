@@ -54,8 +54,13 @@ function getTasks() {
 // Function add task
 function addTask(e) {
   if (taskInput.value === '') {
-    alert('You must enter a task first')
+    alert('You must enter a task first');
   }
+
+  // Create span to append i elements 
+  const span = document.createElement('span');
+  // Add class
+  span.className = 'icon-span'
 
   // Create li
   const li = document.createElement('li');
@@ -69,8 +74,16 @@ function addTask(e) {
   link.className = 'delete-item';
   // Link html
   link.innerHTML = '<i class="fas fa-trash"></i>';
-  // Append link to li
-  li.appendChild(link);
+  // Creat edit link
+  const editLink = document.createElement('a');
+  // Edit link class
+  editLink.className = 'edit-item';
+  // Edit link html
+  editLink.innerHTML = '<i class="fas fa-edit"></i>';
+  // Append i to span element
+  span.appendChild(link);
+  span.appendChild(editLink);
+  li.appendChild(span);
   // Append li to ul 
   taskList.appendChild(li);
 
@@ -99,14 +112,15 @@ function storeTaskInLocalStorage(task) {
 
 // Function delete task
 function deleteTask(e) {
+  // console.log(e.target);
   if (e.target.parentElement.classList.contains('delete-item')) {
     if (confirm('Are you sure?')) {
-      e.target.parentElement.parentElement.remove();
+      e.target.parentElement.parentElement.parentElement.remove();
     }
   }
 
   // Delete from ls
-  deleteTasksFromLocalStorage(e.target.parentElement.parentElement);
+  deleteTasksFromLocalStorage(e.target.parentElement.parentElement.parentElement);
 }
 
 // Function to delete item from local storage when deleted from ui
