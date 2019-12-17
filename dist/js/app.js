@@ -15,6 +15,8 @@ function loadAllEventListeners() {
   form.addEventListener('submit', addTask);
   // Delete task
   taskList.addEventListener('click', deleteTask);
+  // Edit task
+  taskList.addEventListener('click', editTask);
   // Clear tasks
   clearBtn.addEventListener('click', clearTasks);
   // Filter tasks
@@ -134,6 +136,13 @@ function deleteTask(e) {
 
   // Delete from ls
   deleteTasksFromLocalStorage(e.target.parentElement.parentElement.parentElement);
+}
+
+// Edit task
+function editTask(e) {
+  if (e.target.parentElement.classList.contains('edit-item')) {
+
+  }
 }
 
 // Function to delete item from local storage when deleted from ui
