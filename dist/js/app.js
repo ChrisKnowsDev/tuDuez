@@ -15,6 +15,8 @@ function loadAllEventListeners() {
   form.addEventListener('submit', addTask);
   // Delete task
   taskList.addEventListener('click', deleteTask);
+  // Edit task
+  taskList.addEventListener('click', editTask);
   // Clear tasks
   clearBtn.addEventListener('click', clearTasks);
   // Filter tasks
@@ -37,14 +39,27 @@ function getTasks() {
     li.className = 'list-item';
     // Create textnode and append to li
     li.appendChild(document.createTextNode(task));
-    // Create link
+    // Create  delete link
     const link = document.createElement('a');
     // Add class
     link.className = 'delete-item';
     // Link html
     link.innerHTML = '<i class="fas fa-trash"></i>';
-    // Append link to li
-    li.appendChild(link);
+    // Creat edit link
+    const editLink = document.createElement('a');
+    // Edit link class
+    editLink.className = 'edit-item';
+    // Edit link html
+    editLink.innerHTML = '<i class="fas fa-edit"></i>';
+    // Create span to append i elements 
+    const span = document.createElement('span');
+    // Add class
+    span.className = 'icon-span'
+    // Append i to span element
+    span.appendChild(editLink);
+    span.appendChild(link);
+
+    li.appendChild(span);
     // Append li to ul 
     taskList.appendChild(li);
   });
@@ -57,18 +72,13 @@ function addTask(e) {
     alert('You must enter a task first');
   }
 
-  // Create span to append i elements 
-  const span = document.createElement('span');
-  // Add class
-  span.className = 'icon-span'
-
   // Create li
   const li = document.createElement('li');
   // Add class
   li.className = 'list-item';
   // Create textnode and append to li
   li.appendChild(document.createTextNode(taskInput.value));
-  // Create link
+  // Create  delete link
   const link = document.createElement('a');
   // Add class
   link.className = 'delete-item';
@@ -80,9 +90,14 @@ function addTask(e) {
   editLink.className = 'edit-item';
   // Edit link html
   editLink.innerHTML = '<i class="fas fa-edit"></i>';
+  // Create span to append i elements 
+  const span = document.createElement('span');
+  // Add class
+  span.className = 'icon-span'
   // Append i to span element
-  span.appendChild(link);
   span.appendChild(editLink);
+  span.appendChild(link);
+
   li.appendChild(span);
   // Append li to ul 
   taskList.appendChild(li);
@@ -121,6 +136,13 @@ function deleteTask(e) {
 
   // Delete from ls
   deleteTasksFromLocalStorage(e.target.parentElement.parentElement.parentElement);
+}
+
+// Edit task
+function editTask(e) {
+  if (e.target.parentElement.classList.contains('edit-item')) {
+
+  }
 }
 
 // Function to delete item from local storage when deleted from ui
