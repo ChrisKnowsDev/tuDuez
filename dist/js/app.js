@@ -68,47 +68,71 @@ function getTasks() {
 // Function add task
 function addTask(e) {
   if (taskInput.value === '') {
-    alert('You must enter a task first');
-    return;
+    showMessage('Please enter a tuDuez');
+  } else {
+    // Create li
+    const li = document.createElement('li');
+    // Add class
+    li.className = 'list-item';
+    // Create textnode and append to li
+    li.appendChild(document.createTextNode(taskInput.value));
+    // Create  delete link
+    const link = document.createElement('a');
+    // Add class
+    link.className = 'delete-item';
+    // Link html
+    link.innerHTML = '<i class="fas fa-trash"></i>';
+    // Creat edit link
+    const editLink = document.createElement('a');
+    // Edit link class
+    editLink.className = 'edit-item';
+    // Edit link html
+    editLink.innerHTML = '<i class="fas fa-edit"></i>';
+    // Create span to append i elements
+    const span = document.createElement('span');
+    // Add class
+    span.className = 'icon-span';
+    // Append i to span element
+    span.appendChild(editLink);
+    span.appendChild(link);
+
+    li.appendChild(span);
+    // Append li to ul
+    taskList.appendChild(li);
+
+    // Store task in ls
+    storeTaskInLocalStorage(taskInput.value);
+
+    // Clear task input after submit
+    taskInput.value = '';
   }
 
-  // Create li
-  const li = document.createElement('li');
-  // Add class
-  li.className = 'list-item';
-  // Create textnode and append to li
-  li.appendChild(document.createTextNode(taskInput.value));
-  // Create  delete link
-  const link = document.createElement('a');
-  // Add class
-  link.className = 'delete-item';
-  // Link html
-  link.innerHTML = '<i class="fas fa-trash"></i>';
-  // Creat edit link
-  const editLink = document.createElement('a');
-  // Edit link class
-  editLink.className = 'edit-item';
-  // Edit link html
-  editLink.innerHTML = '<i class="fas fa-edit"></i>';
-  // Create span to append i elements
-  const span = document.createElement('span');
-  // Add class
-  span.className = 'icon-span';
-  // Append i to span element
-  span.appendChild(editLink);
-  span.appendChild(link);
 
-  li.appendChild(span);
-  // Append li to ul
-  taskList.appendChild(li);
-
-  // Store task in ls
-  storeTaskInLocalStorage(taskInput.value);
-
-  // Clear task input after submit
-  taskInput.value = '';
 
   e.preventDefault();
+}
+
+// Function show message
+function showMessage(msg) {
+  // Create div
+  const msgDiv = document.createElement('div');
+  // Add class
+  msgDiv.className = 'alert';
+
+  // get elements
+  const container = document.querySelector('.container');
+  const title = document.querySelector('.title');
+
+  // Create text node and append to div
+  msgDiv.appendChild(document.createTextNode(msg));
+
+  // Insert alert message above title
+  container.insertBefore(msgDiv, title);
+
+  // Timeout after 3 sec
+  setTimeout(() => {
+    document.querySelector('.alert').remove();
+  }, 3000);
 }
 
 // Function to store task in ls
@@ -142,8 +166,7 @@ function deleteTask(e) {
 
 // Edit task
 function editTask(e) {
-  if (e.target.parentElement.classList.contains('edit-item')) {
-  }
+  if (e.target.parentElement.classList.contains('edit-item')) {}
 }
 
 // Function to delete item from local storage when deleted from ui
